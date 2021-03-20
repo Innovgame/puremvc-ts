@@ -1,0 +1,11 @@
+{
+  "name": "pureMVC",
+  "version": "0.01",
+  "description": "puremvc",
+  "main": "index.js",
+  "author": "lc",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
+}
