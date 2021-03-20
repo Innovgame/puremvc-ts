@@ -1,8 +1,10 @@
-import { ICommand } from './ICommand';
 import { INotification } from './INotification';
 
 export interface IControllerFacade {
-    registerCommand(notificationName: string, commandClassRef: ICommand): void;
+    registerCommand(
+        notificationName: string,
+        commandClassRef: { new (): any }
+    ): void;
     hasCommand(notificationName: string): boolean;
     removeCommand(notificationName: string): void;
 }

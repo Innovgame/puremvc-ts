@@ -3,7 +3,7 @@ import { Observer } from '../pattern';
 import { View } from './View';
 
 export class Controller implements IController {
-    protected commandMap: { [key: string]: ICommand };
+    protected commandMap: { [key: string]: { new (): any } };
     protected view: IView;
     protected multitionKey: string;
 
@@ -33,12 +33,15 @@ export class Controller implements IController {
         const commandClassRef = this.commandMap[cmdName];
 
         if (commandClassRef) {
-            const command = new commandClassRef();
+            const command: ICommand = new commandClassRef();
             command.initializeNotifier(this.multitionKey);
             command.excute(notification);
         }
     }
-    registerCommand(notificationName: string, commandClassRef: ICommand): void {
+    registerCommand(
+        notificationName: string,
+        commandClassRef: { new (): any }
+    ): void {
         if (!this.commandMap[notificationName]) {
             this.view?.registerObserver(
                 notificationName,

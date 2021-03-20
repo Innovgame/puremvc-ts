@@ -1,8 +1,8 @@
 import { IFacade, INotifier } from '../../interfaces';
-import { Facade } from '../facade';
+import { Facade } from '../Facade';
 
 export class Notifier implements INotifier {
-    protected multitionKey: string | null = null;
+    protected multitionKey: string = 'Notifier';
 
     static MULTITON_MSG: string =
         'multitonKey for this Notifier not yet initialized!';
