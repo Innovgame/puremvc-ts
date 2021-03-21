@@ -2,10 +2,14 @@
   "name": "puremvc",
   "version": "0.0.1",
   "description": "puremvc",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc"
+  },
   "author": "lc",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "typescript": "^4.2.3"
   }
 }
