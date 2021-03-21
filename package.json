@@ -1,6 +1,6 @@
 {
   "name": "puremvc",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "puremvc",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

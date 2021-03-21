@@ -6,7 +6,7 @@ export class Proxy extends Notifier implements IProxy {
     protected data: any;
 
     protected static NAME: string = 'Proxy';
-    constructor(proxyName: string | null = null, data: any = null) {
+    constructor(proxyName: string | null = null, data?: any) {
         super();
 
         this.proxyName = proxyName || Proxy.NAME;
