@@ -61,7 +61,10 @@ export class Controller implements IController {
         return !!this.commandMap[notificationName];
     }
     removeCommand(notificationName: string): void {
-        throw new Error('Method not implemented.');
+        if (this.hasCommand(notificationName)) {
+            this.view.removeObserver(notificationName, this);
+            delete this.commandMap[notificationName];
+        }
     }
 
     static getInstance(key: string): IController {
