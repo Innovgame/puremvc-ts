@@ -1,4 +1,5 @@
 export * from './ICommand';
+export * from './IConstructor';
 export * from './IController';
 export * from './IFacade';
 export * from './IMediator';
@@ -8,4 +9,3 @@ export * from './INotifier';
 export * from './IObserver';
 export * from './IProxy';
 export * from './IView';
-export * from './IConstructor';
