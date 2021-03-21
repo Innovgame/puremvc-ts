@@ -73,18 +73,13 @@ export class View implements IView {
         }
 
         const interests = mediator.listNotificationInterests();
-        if (interests.length > 0) {
-            this.mediatorMap[mediatorName] = mediator;
-            mediator.initializeNotifier(this.multitionKey);
-            const observer = new Observer(
-                mediator.handleNotification,
-                mediator
-            );
-            interests.forEach((interest) => {
-                this.registerObserver(interest, observer);
-            });
-            mediator.onRegister();
-        }
+        this.mediatorMap[mediatorName] = mediator;
+        mediator.initializeNotifier(this.multitionKey);
+        const observer = new Observer(mediator.handleNotification, mediator);
+        interests.forEach((interest) => {
+            this.registerObserver(interest, observer);
+        });
+        mediator.onRegister();
     }
     retrieveMediator(mediatorName: string): IMediator | null {
         return this.mediatorMap[mediatorName] || null;
