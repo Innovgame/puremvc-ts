@@ -41,7 +41,7 @@ export class Controller implements IController {
         if (commandClassRef) {
             const command: ICommand = new commandClassRef();
             command.initializeNotifier(this.multitionKey);
-            command.excute(notification);
+            command.execute(notification);
         }
     }
     registerCommand(

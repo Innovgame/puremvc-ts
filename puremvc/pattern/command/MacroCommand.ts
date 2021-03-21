@@ -15,12 +15,12 @@ export class MacroCommand extends Notifier implements ICommand {
         this.subCommands.push(commandClassRef);
     }
 
-    excute(notification: INotification): void {
+    execute(notification: INotification): void {
         this.subCommands.forEach((commandClassRef) => {
             const command = new commandClassRef();
             command.initializeNotifier(this.multitionKey);
 
-            command.excute(notification);
+            command.execute(notification);
         });
     }
 }
