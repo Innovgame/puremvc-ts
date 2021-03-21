@@ -1,6 +1,7 @@
 import { Controller, Model, View } from '../core';
 import {
     ICommand,
+    ICommandContructor,
     IController,
     IFacade,
     IMediator,
@@ -89,7 +90,10 @@ export class Facade implements IFacade {
         return this.view.hasMediator(mediatorName);
     }
 
-    registerCommand(notificationName: string, commandClassRef: ICommand): void {
+    registerCommand(
+        notificationName: string,
+        commandClassRef: ICommandContructor
+    ): void {
         this.controller &&
             this.controller.registerCommand(notificationName, commandClassRef);
     }

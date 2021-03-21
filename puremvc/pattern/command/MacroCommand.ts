@@ -1,8 +1,8 @@
-import { ICommand, INotification } from '../../interfaces';
+import { ICommand, INotification, ICommandContructor } from '../../interfaces';
 import { Notifier } from '../observer';
 
 export class MacroCommand extends Notifier implements ICommand {
-    subCommands: { new (): any }[] = [];
+    subCommands: ICommandContructor[] = [];
 
     constructor() {
         super();
@@ -11,13 +11,13 @@ export class MacroCommand extends Notifier implements ICommand {
 
     initializeMacroCommand(): void {}
 
-    addCommand(commandClassRef: { new (): any }): void {
+    addCommand(commandClassRef: ICommandContructor): void {
         this.subCommands.push(commandClassRef);
     }
 
     excute(notification: INotification): void {
         this.subCommands.forEach((commandClassRef) => {
-            const command = new commandClassRef() as ICommand;
+            const command = new commandClassRef();
             command.initializeNotifier(this.multitionKey);
 
             command.excute(notification);

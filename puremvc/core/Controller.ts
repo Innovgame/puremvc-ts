@@ -1,9 +1,15 @@
-import { ICommand, IController, INotification, IView } from '../interfaces';
+import {
+    ICommand,
+    IController,
+    INotification,
+    IView,
+    ICommandContructor,
+} from '../interfaces';
 import { Observer } from '../pattern';
 import { View } from './View';
 
 export class Controller implements IController {
-    protected commandMap: { [key: string]: { new (): any } };
+    protected commandMap: { [key: string]: ICommandContructor };
     protected view: IView;
     protected multitionKey: string;
 
@@ -40,7 +46,7 @@ export class Controller implements IController {
     }
     registerCommand(
         notificationName: string,
-        commandClassRef: { new (): any }
+        commandClassRef: ICommandContructor
     ): void {
         if (!this.commandMap[notificationName]) {
             this.view?.registerObserver(
