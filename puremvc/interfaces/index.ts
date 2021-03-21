@@ -8,3 +8,4 @@ export * from './INotifier';
 export * from './IObserver';
 export * from './IProxy';
 export * from './IView';
+export * from './IConstructor';

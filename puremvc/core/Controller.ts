@@ -3,17 +3,17 @@ import {
     IController,
     INotification,
     IView,
-    ICommandContructor,
+    IContructor,
 } from '../interfaces';
 import { Observer } from '../pattern';
 import { View } from './View';
 
 export class Controller implements IController {
-    protected commandMap: { [key: string]: ICommandContructor };
+    protected commandMap: { [key: string]: IContructor<ICommand> };
     protected view: IView;
     protected multitionKey: string;
 
-    protected static instanceMap: { [key: string]: IController };
+    protected static instanceMap: { [key: string]: IController } = {};
     protected static MULTITON_MSG: string =
         'Controller instance for this multiton key already constructed!';
 
@@ -46,7 +46,7 @@ export class Controller implements IController {
     }
     registerCommand(
         notificationName: string,
-        commandClassRef: ICommandContructor
+        commandClassRef: IContructor<ICommand>
     ): void {
         if (!this.commandMap[notificationName]) {
             this.view?.registerObserver(

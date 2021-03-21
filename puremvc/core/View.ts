@@ -10,7 +10,7 @@ export class View implements IView {
 
     protected multitionKey: string;
 
-    protected static instanceMap: { [key: string]: IView };
+    protected static instanceMap: { [key: string]: IView } = {};
     protected static MULTITON_MSG: string =
         'View instance for this multiton key already constructed!';
 

@@ -1,7 +1,7 @@
 import { Controller, Model, View } from '../core';
 import {
     ICommand,
-    ICommandContructor,
+    IContructor,
     IController,
     IFacade,
     IMediator,
@@ -19,7 +19,7 @@ export class Facade implements IFacade {
 
     protected multitionKey: string;
 
-    protected static instanceMap: { [key: string]: IFacade };
+    protected static instanceMap: { [key: string]: IFacade } = {};
     protected static MULTITON_MSG: string =
         'Facade instance for this multiton key already constructed!';
 
@@ -92,7 +92,7 @@ export class Facade implements IFacade {
 
     registerCommand(
         notificationName: string,
-        commandClassRef: ICommandContructor
+        commandClassRef: IContructor<ICommand>
     ): void {
         this.controller &&
             this.controller.registerCommand(notificationName, commandClassRef);
@@ -133,9 +133,12 @@ export class Facade implements IFacade {
         return this.model.hasProxy(proxyName);
     }
 
-    static getInstance(key: string): IFacade {
+    static getInstance(
+        key: string,
+        facadeClassRef: IContructor<IFacade> = Facade
+    ): IFacade {
         if (!Facade.instanceMap[key]) {
-            Facade.instanceMap[key] = new Facade(key);
+            Facade.instanceMap[key] = new facadeClassRef(key);
         }
 
         return Facade.instanceMap[key];

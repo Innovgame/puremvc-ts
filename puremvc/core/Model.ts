@@ -4,7 +4,7 @@ export class Model implements IModel {
     protected proxyMap: { [key: string]: IProxy };
     protected multitionKey: string;
 
-    protected static instanceMap: { [key: string]: IModel };
+    protected static instanceMap: { [key: string]: IModel } = {};
     protected static MULTITON_MSG: string =
         'Model instance for this multiton key already constructed!';
 

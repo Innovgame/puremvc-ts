@@ -1,8 +1,8 @@
-import { ICommand, INotification, ICommandContructor } from '../../interfaces';
+import { ICommand, INotification, IContructor } from '../../interfaces';
 import { Notifier } from '../observer';
 
 export class MacroCommand extends Notifier implements ICommand {
-    subCommands: ICommandContructor[] = [];
+    subCommands: IContructor<ICommand>[] = [];
 
     constructor() {
         super();
@@ -11,7 +11,7 @@ export class MacroCommand extends Notifier implements ICommand {
 
     initializeMacroCommand(): void {}
 
-    addCommand(commandClassRef: ICommandContructor): void {
+    addCommand(commandClassRef: IContructor<ICommand>): void {
         this.subCommands.push(commandClassRef);
     }
 
